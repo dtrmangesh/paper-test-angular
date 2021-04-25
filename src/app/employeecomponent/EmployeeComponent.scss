@@ -1,0 +1,30 @@
+@import 'src/styles.scss';
+.search-icon{
+    position: absolute;
+    top: 11px;
+    right: 10px;
+    opacity: 0.6;
+}
+
+tr:hover{
+    background-color: $white;
+}
+
+.filter-name{
+    height: 34px;
+    width: 100px;
+    border-radius: 12px;
+    padding: 4px 15px;
+    background-color: white;
+}
+.filter-name , th {
+    font-family: $noto-bold-family ;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: $white;
+    border-color: $light-dark;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(52 58 64 / 25%);
+}

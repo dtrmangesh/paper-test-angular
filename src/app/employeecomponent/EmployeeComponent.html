@@ -1,0 +1,87 @@
+<div class="pt-5 mt-3">
+    <form>
+        <div class="input-group">
+            <input type="text" class="form-control" (keyup)="searchEmployee($event)" placeholder="Search" />
+            <i class="search-icon lni lni-search"></i>
+        </div>
+    </form>
+</div>
+<div class="filter-container mt-4">
+    <div class="filter-name">
+        <i class="lni lni-list"></i>
+        Filters
+    </div>
+    <div class="mt-4">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" (change)="filterByExperience($event)" value=""
+                id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                Experience > 2 years
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2"
+                (change)="filterByDepartment($event)">
+            <label class="form-check-label" for="defaultCheck2">
+                Distinct Department
+            </label>
+        </div>
+    </div>
+
+
+
+</div>
+<table *ngIf="departmentCount.length == 0" class="table mt-4">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th (click)="sortByName()" scope="col">
+                <i *ngIf="sortByNames" class="lni lni-arrow-up"></i>
+                <i *ngIf="!sortByNames" class="lni lni-arrow-down"></i>
+
+                Name
+            </th>
+            <th scope="col">Department</th>
+            <th (click)="sortByDate()" class="date-sort" scope="col">
+                <i *ngIf="sortByDates" class="lni lni-arrow-up"></i>
+                <i *ngIf="!sortByDates" class="lni lni-arrow-down"></i>
+                Joining Date
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let employee of employeeData">
+            <td scope="row">{{employee.id}}</td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.department}}</td>
+            <td>{{employee.joining_date }}</td>
+        </tr>
+        <tr *ngIf="employeeData.length ===0">
+            No Candidate found !
+        </tr>
+    </tbody>
+</table>
+
+<table *ngIf="departmentCount.length> 0" class="table mt-4">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Department</th>
+            <th scope="col">Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let department of departmentCount[0] | keyvalue">
+            <td>{{department.key}}</td>
+            <td>{{department.value}}</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<div class="pb-4">
+    <button class="btn btn-secondary" title="It'll delete all candidates from
+        'Development'" (click)="removeCandidates()">
+        <i class="lni lni-exit-up"></i>
+        Remove All</button>
+
+</div>

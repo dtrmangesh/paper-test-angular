@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "NotoSans";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/assets/NotoSansJP-Light.otf");
+   
+  }
+@font-face {
+    font-family: "NotoSans Bold";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/assets/NotoSansJP-Medium.otf");
+   
+  }
+ 
+ 
+  
+  $noto-family: "NotoSans",sans-serif;
+  $noto-bold-family : "NotoSans Bold",sans-serif;
