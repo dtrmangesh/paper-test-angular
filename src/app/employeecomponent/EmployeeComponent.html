@@ -1,3 +1,4 @@
+<!-- SearchBar -->
 <div class="pt-5 mt-3">
     <form>
         <div class="input-group">
@@ -6,6 +7,7 @@
         </div>
     </form>
 </div>
+<!-- Filter's -->
 <div class="filter-container mt-4">
     <div class="filter-name">
         <i class="lni lni-list"></i>
@@ -27,10 +29,10 @@
             </label>
         </div>
     </div>
-
-
-
 </div>
+
+
+<!-- Table to display list of candidates -->
 <table *ngIf="departmentCount.length == 0" class="table mt-4">
     <thead class="thead-dark">
         <tr>
@@ -38,7 +40,6 @@
             <th (click)="sortByName()" scope="col">
                 <i *ngIf="sortByNames" class="lni lni-arrow-up"></i>
                 <i *ngIf="!sortByNames" class="lni lni-arrow-down"></i>
-
                 Name
             </th>
             <th scope="col">Department</th>
@@ -54,7 +55,7 @@
             <td scope="row">{{employee.id}}</td>
             <td>{{employee.name}}</td>
             <td>{{employee.department}}</td>
-            <td>{{employee.joining_date }}</td>
+            <td>{{employee.joining_date}}</td>
         </tr>
         <tr *ngIf="employeeData.length ===0">
             No Candidate found !
@@ -62,6 +63,7 @@
     </tbody>
 </table>
 
+<!-- Table to display list of departments and count -->
 <table *ngIf="departmentCount.length> 0" class="table mt-4">
     <thead class="thead-dark">
         <tr>
@@ -77,7 +79,7 @@
     </tbody>
 </table>
 
-
+<!-- Remove Candidates  -->
 <div class="pb-4">
     <button class="btn btn-secondary" title="It'll delete all candidates from
         'Development'" (click)="removeCandidates()">

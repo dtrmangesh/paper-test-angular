@@ -11,3 +11,8 @@ export interface InputEvents {
     checked?: boolean;
   };
 }
+
+
+export interface DepartmentCount {
+  [key: string]: number;
+}

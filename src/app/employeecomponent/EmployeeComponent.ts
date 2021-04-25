@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeData, InputEvents } from '../app.interface';
+import { DepartmentCount, EmployeeData, InputEvents } from '../app.interface';
 import * as candidateData from '../mockdata.json';
 
 @Component({
@@ -11,11 +11,12 @@ export class EmployeeComponent implements OnInit {
   employeeData: EmployeeData[];
   sortByNames = false;
   sortByDates = false;
-  departmentCount = [];
+  departmentCount: DepartmentCount[];
   departmentEvent = false;
   constructor() {}
 
   ngOnInit(): void {
+    // Getting mock data from json.
     this.employeeData = candidateData.data;
   }
 
@@ -51,6 +52,7 @@ export class EmployeeComponent implements OnInit {
         (a: EmployeeData, b: EmployeeData) => {
           const date1 = a.joining_date.toString().split('/');
           const date2 = b.joining_date.toString().split('/');
+          // Separating Years, Months and Dates to sort by dd/mm/yyyy
           let day1 = parseInt(date1[0]);
           let day2 = parseInt(date2[0]);
           let month1 = parseInt(date1[1]);
@@ -67,23 +69,26 @@ export class EmployeeComponent implements OnInit {
         }
       );
     } else {
+      // For descending order , just reverse the array that we have :-D 
       this.employeeData = this.employeeData.reverse();
     }
   }
 
   filterByExperience($event: InputEvents): void {
     if ($event.target.checked) {
+      // Get the last two year value to compare with candidates joining date !
       const pastYear = new Date().getFullYear() - 2;
-      let expreinceYear =
+      let experienceYear =
         new Date().getDate() + '/' + new Date().getMonth() + '/' + pastYear;
-      expreinceYear = expreinceYear.toString().split('/').reverse().join();
+      experienceYear = experienceYear.toString().split('/').reverse().join();
       this.employeeData = this.employeeData.filter((employee: EmployeeData) => {
+      // Compare if candidates joining date is less that  experinceYear(in our case it's 2).
         const joiningDate = employee.joining_date
           .toString()
           .split('/')
           .reverse()
           .join();
-        return joiningDate < expreinceYear;
+        return joiningDate < experienceYear;
       });
     } else {
       this.employeeData = candidateData.data;
@@ -104,7 +109,6 @@ export class EmployeeComponent implements OnInit {
       }
       this.departmentCount.push(departmentCount);
     } else {
-      console.log(this.departmentCount);
       this.departmentCount = [];
     }
   }
@@ -113,6 +117,7 @@ export class EmployeeComponent implements OnInit {
     this.employeeData = this.employeeData.filter((candidate: EmployeeData) => {
       return candidate.department !== 'Development';
     });
+    // If  the checkbox event is true then call again to filter function !
     if (this.departmentEvent) {
       this.filterByDepartment({ target: { checked: true } });
     }
