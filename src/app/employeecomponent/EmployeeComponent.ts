@@ -11,7 +11,7 @@ export class EmployeeComponent implements OnInit {
   employeeData: EmployeeData[];
   sortByNames = false;
   sortByDates = false;
-  departmentCount: DepartmentCount[];
+  departmentCount: DepartmentCount[] = [];
   departmentEvent = false;
   constructor() {}
 
@@ -69,7 +69,7 @@ export class EmployeeComponent implements OnInit {
         }
       );
     } else {
-      // For descending order , just reverse the array that we have :-D 
+      // For descending order , just reverse the array that we have :-D
       this.employeeData = this.employeeData.reverse();
     }
   }
@@ -82,7 +82,7 @@ export class EmployeeComponent implements OnInit {
         new Date().getDate() + '/' + new Date().getMonth() + '/' + pastYear;
       experienceYear = experienceYear.toString().split('/').reverse().join();
       this.employeeData = this.employeeData.filter((employee: EmployeeData) => {
-      // Compare if candidates joining date is less that  experinceYear(in our case it's 2).
+        // Compare if candidates joining date is less that  experinceYear(in our case it's 2).
         const joiningDate = employee.joining_date
           .toString()
           .split('/')
